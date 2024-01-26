@@ -73,5 +73,9 @@ public class EventService {
         return url;
     }
 
+    public void updateEvent(Event event){
+        eventDAO.save(event);
+    }
+
 
 }

@@ -36,6 +36,12 @@ public class ExceptHandler {
         return new ExceptionsDTO("Impossibile accedere a questa funzionalità! Cambia ruolo", LocalDateTime.now());
     }
 
+    @ExceptionHandler(UnavailableSeatsException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST) // --> Error 400
+    public ExceptionsDTO unavailableSeatsHandle(Exception e){
+        return new ExceptionsDTO(e.getMessage(), LocalDateTime.now());
+    }
+
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) // --> Error 500
     public ExceptionsDTO genericExHandle(Exception e){

@@ -16,7 +16,7 @@ import java.util.UUID;
 @Table(name = "users")
 @Getter
 @Setter
-@JsonIgnoreProperties({"authorities",  "accountNonExpired", "enabled", "accountNonLocked", "credentialsNonExpired", "reservationList", "eventList"})
+@JsonIgnoreProperties({"authorities", "password",  "accountNonExpired", "enabled", "accountNonLocked", "credentialsNonExpired", "reservationList", "eventList"})
 public class User implements UserDetails {
 
     @Id
