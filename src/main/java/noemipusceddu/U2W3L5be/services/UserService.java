@@ -27,5 +27,8 @@ public class UserService {
         return userDAO.findAll(pageable);
     }
 
+    public User findByEmail(String email) throws NotFoundException{
+        return userDAO.findByEmail(email).orElseThrow(()-> new NotFoundException("Utente con email " + email + " non presente!"));
+    }
 
 }
