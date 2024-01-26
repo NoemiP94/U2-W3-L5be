@@ -1,10 +1,7 @@
 package noemipusceddu.U2W3L5be.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,7 +16,7 @@ import java.util.UUID;
 @Table(name = "users")
 @Getter
 @Setter
-@JsonIgnoreProperties({"authorities",  "accountNonExpired", "enabled", "accountNonLocked", "credentialsNonExpired"})
+@JsonIgnoreProperties({"authorities",  "accountNonExpired", "enabled", "accountNonLocked", "credentialsNonExpired", "reservationList", "eventList"})
 public class User implements UserDetails {
 
     @Id
@@ -31,6 +28,15 @@ public class User implements UserDetails {
     private String email;
     private String password;
     private String role;
+
+    @OneToMany(mappedBy = "commonUser")
+    private List<Reservation> reservationList;
+
+    @OneToMany(mappedBy = "admin")
+    private List<Event> eventList;
+
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

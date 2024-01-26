@@ -1,9 +1,6 @@
 package noemipusceddu.U2W3L5be.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +16,13 @@ public class Reservation {
     @GeneratedValue
     private UUID id;
     private LocalDate dateOfReservation;
-    //private User user;
-    //private Event event;
+
+
+    @ManyToOne
+    @JoinColumn(name = "commonUser")
+    private User commonUser;
+
+    @ManyToOne
+    @JoinColumn(name= "event")
+    private Event event;
 }
